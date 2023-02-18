@@ -19,13 +19,13 @@
     "up": "yarn upgrade-interactive",
     "up-latest": "yarn up --latest",
     "release": "cross-env HUSKY=0 standard-version",
-    "push-release": "git push --follow-tags origin main",
-    "prepare": "husky install"
+    "push-release": "git push --follow-tags origin main"
   },
   "dependencies": {
     "@chakra-ui/react": "^2.4.6",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@reduxjs/toolkit": "^1.9.2",
     "framer-motion": "^8.4.3",
     "next": "^13.1.1",
     "next-pwa": "^5.6.0",
@@ -34,7 +34,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.0",
-    "react-icons": "^4.7.1"
+    "react-icons": "^4.7.1",
+    "react-redux": "^8.0.5"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.4.0",

@@ -8,6 +8,7 @@ import {
   Input,
   VStack,
 } from "@chakra-ui/react";
+import { useRegisterMutation } from "lib/redux/services/userAPI";
 import Link from "next/link";
 import type { ChangeEvent, FormEvent } from "react";
 import { useState } from "react";
@@ -33,6 +34,8 @@ const Register = () => {
   const [imagePrev, setImagePrev] = useState<string | ArrayBuffer | null>("");
   const [image, setImage] = useState<string | Blob | File>("");
 
+  const [register, { data, isError }] = useRegisterMutation();
+
   const changeImageHandler = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     const reader = new FileReader();
@@ -53,6 +56,8 @@ const Register = () => {
     myForm.append("email", email);
     myForm.append("password", password);
     myForm.append("file", image);
+    register(myForm);
+    console.log(data, isError);
   };
 
   return (

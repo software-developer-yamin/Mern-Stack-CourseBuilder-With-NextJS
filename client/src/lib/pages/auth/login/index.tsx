@@ -7,17 +7,21 @@ import {
   Input,
   VStack,
 } from "@chakra-ui/react";
+import { useLoginMutation } from "lib/redux/services/userAPI";
 import Link from "next/link";
-import { useState } from "react";
+import { FormEventHandler, useState } from "react";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [login, { data, isLoading, isError, isSuccess }] = useLoginMutation();
 
-  const submitHandler = (e) => {
+  const submitHandler: FormEventHandler = (e) => {
     e.preventDefault();
     // eslint-disable-next-line no-console
     console.log(email, password);
+    login({ email, password });
+    console.log(data);
   };
 
   return (

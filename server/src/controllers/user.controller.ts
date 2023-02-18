@@ -472,9 +472,17 @@ userModel.watch().on("change", async () => {
   const subscription = await userModel.find({
     "subscription.status": "active",
   });
-  stats[0].users = await userModel.countDocuments();
-  stats[0].subscription = subscription.length;
-  stats[0].createdAt = new Date(Date.now());
 
-  await stats[0].save();
+  if (
+    stats &&
+    stats[0]?.users &&
+    stats[0]?.subscription &&
+    stats[0]?.createdAt
+  ) {
+    stats[0].users = await userModel.countDocuments();
+    stats[0].subscription = subscription.length;
+    stats[0].createdAt = new Date(Date.now());
+
+    await stats[0].save();
+  }
 });
