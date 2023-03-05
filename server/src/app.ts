@@ -28,7 +28,13 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 
 // configuration routes
 app.use("/api/v1", userRoute);
@@ -71,7 +77,6 @@ nodeCron.schedule("0 0 0 5 * *", async () => {
     console.log(error);
   }
 });
-
 
 app.listen(process.env.PORT, () => {
   console.log(`listening on port ${process.env.PORT}`);
